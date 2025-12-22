@@ -2,10 +2,22 @@ import psutil
 
 def main():
     cpu_usage = get_cpu_usage()
-    print(f"CPU usage: {cpu_usage}%" )
+    mem_usage = get_memory_usage()
+    disk_usage = get_disk_usage()
+    print(f"CPU usage: {cpu_usage}%")
+    print(f"Memory Usage: {mem_usage.percent}%")
+    print(f"Disk Usage: {disk_usage.percent}%")
 
 def get_cpu_usage():
     usage = psutil.cpu_percent(interval=1)
+    return usage
+
+def get_memory_usage():
+    usage = psutil.virtual_memory()
+    return usage
+
+def get_disk_usage():
+    usage = psutil.disk_usage("/")
     return usage
 
 if __name__ == "__main__":
