@@ -1,4 +1,6 @@
 """
+Author: Weibo Lin
+
 This program allows users to check their system status or monitor the system continuously.
 Without the arguments, the system will automatically give all the parts of system that this program could check in once.
 There are also some arguments that the users could add to the end of the command:
@@ -70,6 +72,7 @@ def get_cpu_usage():
     :return: usage of the cpu and each core of it
     """
 
+    # interval=0.1 means measure CPU usage over 0.1 second
     cores = psutil.cpu_percent(interval=0.1, percpu=True)
     usage = sum(cores) / len(cores)
     return cores, usage
