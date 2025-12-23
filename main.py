@@ -39,6 +39,7 @@ def run_daemon(args):
             print("System Monitor (Daemon Mode)")
             # call the function that run all the checks
             run_once(args)
+            # wait for the interval
             time.sleep(interval)
     except KeyboardInterrupt:
         sys.exit("\nUser interrupt")
@@ -106,10 +107,10 @@ def get_net_speed():
     time.sleep(1)
     new_value = psutil.net_io_counters()
 
-    bytes_sent = (new_value.bytes_sent - old_value.bytes_sent) / 1
-    bytes_recv = (new_value.bytes_recv - old_value.bytes_recv) / 1
-    packets_sent = (new_value.packets_sent - old_value.packets_sent) / 1
-    packets_recv = (new_value.packets_recv - old_value.packets_recv) / 1
+    bytes_sent = (new_value.bytes_sent - old_value.bytes_sent)
+    bytes_recv = (new_value.bytes_recv - old_value.bytes_recv)
+    packets_sent = (new_value.packets_sent - old_value.packets_sent)
+    packets_recv = (new_value.packets_recv - old_value.packets_recv)
     return [bytes_sent, bytes_recv, packets_sent, packets_recv]
 
 def print_cpu_usage(cores, usage):
@@ -133,6 +134,7 @@ def print_mem_usage(usage):
     """
 
     print(f"Memory Usage:")
+    # Convert the bytes to the GBs
     print(f"Total: {usage.total / 1024 ** 3:.2f} GB")
     print(f"Used: {usage.used / 1024 ** 3:.2f} GB")
     print(f"Available: {usage.available / 1024 ** 3:.2f} GB")
@@ -146,6 +148,7 @@ def print_disk_usage(usage):
     """
 
     print("Disk Usage:")
+    # Convert the bytes to the GBs
     print(f"Total: {usage.total / 1024 ** 3:.2f} GB")
     print(f"Used: {usage.used / 1024 ** 3:.2f} GB")
     print(f"Free: {usage.free / 1024 ** 3:.2f} GB")
@@ -159,6 +162,7 @@ def print_net_speed(net_speed):
     """
 
     print(f"Network speed:")
+    # Convert the bytes to the KBs
     print(f"Upload Speed: {net_speed[0] / 1024:.2f} KB/s")
     print(f"Download Speed: {net_speed[1] / 1024:.2f} KB/s")
     print(f"Packets Upload: {int(net_speed[2])} Packets/s")

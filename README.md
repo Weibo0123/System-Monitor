@@ -42,4 +42,13 @@ To try this online, you need follow a few steps
 1. Click the Replit link below to open this project in view mode:
 https://replit.com/@weibolin322/System-Monitor
 2. Click **Remix** to create your own copy
-3. Press **Run!** 
+3. Press **Run** to try!!!
+
+## Why I build this
+I built this project because I'm very interested in how computer hardware
+and operating systems work.
+
+It's also because I want to build my own CLI tools with the argument parsing and terminal output.
+
+This project is a starting point, and I plan to build more CLI tools in
+the future.
